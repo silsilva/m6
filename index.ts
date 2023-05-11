@@ -105,7 +105,11 @@ app.post("/rooms/:id", function (req, res) {
     res.json("todo ok");
   });
 });
+app.use(express.static("dist"));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./dist/index.html"));
+});
 app.listen(port, () => {
   console.log(
     `aplicacion de ejemplo escuchando en el puerto http://localhost:${port}`

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const db_1 = require("./db");
 const uuid_1 = require("uuid");
+const path = require("path");
 const cors = require("cors");
 const app = express();
 const port = 3000;
@@ -99,6 +100,10 @@ app.post("/rooms/:id", function (req, res) {
     chatRoomRef.push(req.body, function () {
         res.json("todo ok");
     });
+});
+app.use(express.static("dist"));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./dist/index.html"));
 });
 app.listen(port, () => {
     console.log(`aplicacion de ejemplo escuchando en el puerto http://localhost:${port}`);
