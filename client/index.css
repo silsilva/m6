@@ -1,0 +1,24 @@
+body {
+  background-color: #f6a700;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+}
+.chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 2%;
+  opacity: 0.9;
+  height: 70vh;
+
+  background-color: #4f4f4e;
+}
+.message {
+  background-color: #4f4f4e;
+
+  margin-top: 7px;
+
+  height: 33px;
+  width: 100%;
+}
