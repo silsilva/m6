@@ -6,7 +6,7 @@ const uuid_1 = require("uuid");
 const path = require("path");
 const cors = require("cors");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 const userCollection = db_1.firestore.collection("users");

@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://subir.onrender.com";
 import { rtdb } from "./rtdb";
 import map from "lodash/map";
 type Message = {
