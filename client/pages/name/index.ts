@@ -41,7 +41,7 @@ customElements.define(
                   nombre != v.jugador1.name ||
                   nombre != v.jugador2.name
                 ) {
-                  alert("ERROR");
+                  alert("ERROR, tu nombre no coincide con nadie en la sala. ");
                 }
               });
             });

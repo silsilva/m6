@@ -7,7 +7,7 @@ customElements.define(
     connectedCallback() {
       this.render();
       const form = this.querySelector(".form");
-      //Ingresa el codigo de la room existente y se redirecciona a pagina /name
+
       form.addEventListener("submit", (e: any) => {
         e.preventDefault();
         const code = e.target.code.value;
