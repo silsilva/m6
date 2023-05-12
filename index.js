@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const db_1 = require("./db");
 const uuid_1 = require("uuid");
-const path = require("path");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,62 +10,54 @@ app.use(express.json());
 app.use(cors());
 const userCollection = db_1.firestore.collection("users");
 const roomsCollection = db_1.firestore.collection("rooms");
-app.get("/hola", (req, res) => {
-    res.json({
-        message: "HOLA MUNDO, DESDE EL SERVIDOR",
-    });
-});
-app.get("/env", (req, res) => {
-    res.json({
-        environment: process.env.AUTH_DOMAIN,
-    });
-});
 app.post("/signup", (req, res) => {
     const nombre = req.body.nombre;
     userCollection
         .where("nombre", "==", nombre)
         .get()
-        .then((searchResponse) => {
-        if (searchResponse.empty) {
+        .then((searchRes) => {
+        if (searchRes.empty) {
             userCollection
                 .add({
                 nombre,
             })
                 .then((newUserRef) => {
-                res.json({
-                    id: newUserRef.id,
-                    new: true,
-                });
+                res.json({ id: newUserRef.id, new: true });
             });
         }
         else {
-            res.json({
-                id: searchResponse.docs[0].id,
-            });
+            res.json({ id: searchRes.docs[0].id, new: false });
         }
     });
 });
+//Crea un room
 app.post("/rooms", (req, res) => {
-    const { userId } = req.body;
+    const { userId, name } = req.body;
     userCollection
         .doc(userId.toString())
         .get()
         .then((doc) => {
         if (doc.exists) {
-            const roomsRef = db_1.rtdb.ref("rooms/" + (0, uuid_1.v4)());
-            roomsRef
+            const roomRef = db_1.rtdb.ref(`rooms/${(0, uuid_1.v4)()}`);
+            roomRef
                 .set({
-                owner: userId,
+                currentGame: {
+                    jugador1: {
+                        userId,
+                        name,
+                        choice: "",
+                        online: true,
+                        start: false,
+                    },
+                },
             })
                 .then(() => {
-                const roomLongId = roomsRef.key;
+                const roomLongId = roomRef.key;
                 const roomId = 1000 + Math.floor(Math.random() * 999);
                 roomsCollection
                     .doc(roomId.toString())
                     .set({
                     rtdbRoomId: roomLongId,
-                    owner: userId,
-                    messages: [],
                 })
                     .then(() => {
                     res.json({
@@ -77,7 +68,7 @@ app.post("/rooms", (req, res) => {
         }
         else {
             res.status(401).json({
-                message: "NO EXISTIS",
+                message: "no existis",
             });
         }
     });
@@ -85,26 +76,69 @@ app.post("/rooms", (req, res) => {
 app.get("/rooms/:roomId", (req, res) => {
     const { userId } = req.query;
     const { roomId } = req.params;
-    roomsCollection
-        .doc(roomId)
+    userCollection
+        .doc(userId.toString())
         .get()
-        .then((userSnap) => {
-        const userData = userSnap.data();
-        res.json(userData);
-        //res.json(userData.rtdbRoomId);
+        .then((doc) => {
+        if (doc.exists) {
+            const room = roomsCollection.doc(roomId.toString()).get();
+            room.then((snap) => {
+                const data = snap.data();
+                res.json(data);
+            });
+        }
+        else {
+            res.status(401).json({
+                message: "no existis",
+            });
+        }
     });
 });
-app.post("/rooms/:id", function (req, res) {
-    const { id } = req.params;
-    const chatRoomRef = db_1.rtdb.ref("/rooms/" + `${id}` + "/messages");
-    chatRoomRef.push(req.body, function () {
-        res.json("todo ok");
+app.post("/rooms/jugador2", (req, res) => {
+    const { userId, name, roomId, rtdbId } = req.body;
+    const roomRef = db_1.rtdb.ref(`rooms/${rtdbId}/currentGame/`);
+    roomRef
+        .update({
+        jugador2: {
+            userId,
+            name,
+            choice: "",
+            online: true,
+            start: false,
+        },
+    })
+        .then(() => {
+        res.status(200).json("ok");
+    });
+});
+app.post("/info/:rtdbId", (req, res) => {
+    const { rtdbId } = req.params;
+    const roomRef = db_1.rtdb.ref(`rooms/${rtdbId}/currentGame/jugador1`);
+    roomRef.update(req.body, function (err) {
+        console.log(err);
+        res.json("okk");
+    });
+});
+app.post("/info/jugador2/:rtdbId", (req, res) => {
+    const { rtdbId } = req.params;
+    const roomRef = db_1.rtdb.ref(`rooms/${rtdbId}/currentGame/jugador2`);
+    roomRef.update(req.body, function (err) {
+        console.log(err);
+        res.json("ok");
+    });
+});
+app.get("/jugadores/:rtdbId", (req, res) => {
+    const { rtdbId } = req.params;
+    const referencia = db_1.rtdb.ref(`/rooms/${rtdbId}/currentGame`);
+    referencia.once("value", (snap) => {
+        const contenido = snap.val();
+        res.status(200).json(contenido);
     });
 });
 app.use(express.static("dist"));
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./dist/index.html"));
-});
-app.listen(port, () => {
-    console.log(`aplicacion de ejemplo escuchando en el puerto http://localhost:${port}`);
-});
+    res.sendFile(__dirname + "./dist/index.html");
+}),
+    app.listen(port, () => {
+        console.log("Escuchando en el puerto: " + port);
+    });

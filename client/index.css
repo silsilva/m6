@@ -1,24 +1,105 @@
-body {
-  background-color: #f6a700;
-  color: #fff;
-  font-family: "Open Sans", sans-serif;
+* {
+  box-sizing: border-box;
 }
-.chat {
+body {
+  margin: 0;
+  font-family: "Bruno Ace SC", cursive;
+  background-image: url(./img/fondo.png);
+}
+button {
+  font-family: "Bruno Ace SC", cursive;
+  position: relative;
+  display: block;
+  height: 40px;
+  width: 280px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #000;
+  font-size: 18px;
+  overflow: hidden;
+  transition: all 500ms ease;
+  border: 5px solid#20e2d7;
+  margin-bottom: 40px;
+  z-index: 0;
+  font-weight: 700;
+}
+button:hover {
+  background-color: #20e2d7;
+}
+.titulo {
+  width: 280px;
+  font-size: 53px;
+  display: flex;
+  justify-content: center;
+}
+.contenedor {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-around;
   align-items: center;
-  border-radius: 2%;
-  opacity: 0.9;
-  height: 70vh;
-
-  background-color: #4f4f4e;
+  height: 100vh;
 }
-.message {
-  background-color: #4f4f4e;
+@media (min-width: 700px) {
+  .titulo {
+    width: 400px;
+    font-size: 73px;
+  }
+  button {
+    height: 57px;
+    width: 300px;
+  }
+  input {
+    height: 57px;
+    width: 300px;
+  }
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 380px;
+}
+label {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+input {
+  margin-bottom: 25px;
+  height: 40px;
+  width: 280px;
+  border: 5px solid#20e2d7;
+}
+.texto {
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
-  margin-top: 7px;
-
-  height: 33px;
+.encabezado {
+  display: flex;
   width: 100%;
+  justify-content: space-between;
+  padding: 0 17px;
+}
+.manos {
+  display: flex;
+  flex-direction: row;
+  width: 50vh;
+  justify-content: space-around;
+}
+.score {
+  border: solid #000;
+  width: 23vh;
+  height: 23vh;
+  border-radius: 15px;
+  padding: 0 3vh;
+  background-color: azure;
+}
+@media (min-width: 700px) {
+  .score {
+    height: 13vh;
+  }
 }

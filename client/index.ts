@@ -1,8 +1,10 @@
-import "./pages/index";
-import "./pages/chat";
+//Router
 import "./router";
 import { state } from "./state";
-
-(function () {
-  state.init();
-})();
+import { initFooter } from "./components/hands";
+import "../client/components/Countdown";
+function main() {
+  state.getData();
+  initFooter();
+}
+main();
