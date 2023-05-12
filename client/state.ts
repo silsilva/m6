@@ -35,7 +35,7 @@ const state = {
     const cs = this.getState();
     cs.name = name;
     if (name) {
-      return fetch(API_BASE_URL + "/signup", {
+      return fetch(`${API_BASE_URL}/signup`, {
         method: "post",
         headers: {
           "content-type": "application/json",
