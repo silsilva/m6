@@ -1,9 +1,8 @@
 import { Router } from "@vaadin/router";
 import { state } from "../../state";
 const piedra = require("url:../../img/pngaaa.com-3313783.png");
-const papel = require("url:../../img/pngaaa.com-3313815.png");
-const tijera = require("url:../../img/pngaaa.com-3313779.png");
-
+const papel = require("url:../../img/pngaaa.com-3313779.png");
+const tijera = require("url:../../img/pngaaa.com-3313815.png");
 customElements.define(
   "name-page",
   class extends HTMLElement {
