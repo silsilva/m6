@@ -50,7 +50,7 @@ customElements.define(
       <img src=${papel} />
       </button>
       <button type="button" class="tijera">
-      <img src=${tijera}} />
+      <img src=${tijera} />
       </button>
     </div>
 

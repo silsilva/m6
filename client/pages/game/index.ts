@@ -67,7 +67,7 @@ customElements.define(
             <img class="img" src=${papel} />
           </button>
           <button type="button" class="tijera">
-            <img class="img" src=${tijera}} />
+            <img class="img" src=${tijera} />
           </button>
         </div>
      </div>     
