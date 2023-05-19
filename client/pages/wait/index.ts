@@ -1,5 +1,8 @@
 import { state } from "../../state";
 import { Router } from "@vaadin/router";
+const piedra = require("url:../../img/pngaaa.com-3313783.png");
+const papel = require("url:../../img/pngaaa.com-3313815.png");
+const tijera = require("url:../../img/pngaaa.com-3313779.png");
 
 customElements.define(
   "wait-page",
@@ -31,26 +34,36 @@ customElements.define(
       const esperandoA = this.who(miNombre, p1, p2);
       this.innerHTML = `
       <div class="contenedor">
-       <div class="encabezado">
+      <div class="encabezado">
         <div class="iz">
-        <p>${p1}:${puntos1}</p>
-        <p>${p2}:${puntos2}</p>
+          <h4>${p1}:${puntos1}</h4>
+          <h4>${p2}:${puntos2}</h4>
         </div>
         <div class="der">
-        <p>codigo:${roomId}</p>
+          <h4>codigo:${roomId}</h4>
         </div>
-        </div>
-        <div class="texto">
-          <h3>Esperando a que ${esperandoA} presione ¡jugar! </h3>
-        </div>
-    
-        <div class="footer">
-        <footer-component></footer-component>
-        </div>
+      </div>
 
 
+      <div class="elemento elemento1">
+        <p class="texto">Esperando a que  ${esperandoA}  presione ¡jugar!</p>
+      </div>
 
+    <div class="elemento elemento5">
+      <button type="button" class="piedra">
+      <img src=${piedra} />
+      </button>
+      <button type="button" class="papel">
+        <img src=${papel} />
+      </button>
+      <button type="button" class="tijera">
+        <img src=${tijera}} />
+      </button>
     </div>
+
+
+
+  </div>
 
        
             `;

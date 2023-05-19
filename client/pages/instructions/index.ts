@@ -1,5 +1,8 @@
 import { state } from "../../state";
 import { Router } from "@vaadin/router";
+const piedra = require("url:../../img/pngaaa.com-3313783.png");
+const papel = require("url:../../img/pngaaa.com-3313815.png");
+const tijera = require("url:../../img/pngaaa.com-3313779.png");
 
 customElements.define(
   "instructions-page",
@@ -23,34 +26,38 @@ customElements.define(
     }
     render() {
       this.innerHTML = `
-      <div class="contenedor">
+    <div class="contenedor">
+        <div class="elemento elemento1">
+          <p class="texto">
+          presiona jugar y elegí: piedra, papel o tijera antes de que pasen los
+          3 segundos
+          </p>
+      
+        </div>
    
-       <div class="texto">
-       
-         <h3>presiona jugar y elegí: 
-         piedra, papel o tijera 
-         antes de que pasen 
-         los 3 segundos</h3>
-       </div>
-       <button class="seguir">JUGAR!</button>  
-   
-       <div class="footer">
-       <footer-component></footer-component>
-       </div>
+
+
+        <div class="botones">
+          <button class="seguir">JUGAR!</button>
+        </div>
+
+
+    <div class="elemento elemento5">
+      <button type="button" class="piedra">
+      <img src=${piedra} />
+      </button>
+      <button type="button" class="papel">
+      <img src=${papel} />
+      </button>
+      <button type="button" class="tijera">
+      <img src=${tijera}} />
+      </button>
+    </div>
+
+
+
+</div>
           `;
-      const style = document.createElement("style");
-      style.innerHTML = `
-           h3{
-            width: 280px;
-           }
-           @media (min-width: 700px) {
-            h3{
-              font-size: 38px;
-              width: 480px;
-             }
-           }
-            `;
-      this.appendChild(style);
     }
   }
 );

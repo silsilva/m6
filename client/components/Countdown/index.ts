@@ -31,7 +31,7 @@ class Countdown extends HTMLElement {
     style.innerHTML = `
       .container{
         margin-top:10px;
-        margin-left:10%;
+       
           width:245px;
           height:245px;
           border:23px solid black;
@@ -46,7 +46,7 @@ class Countdown extends HTMLElement {
          
           
           margin-top:80px;
-          margin-left:40%;
+         
           width:245px;
           height:245px;
          

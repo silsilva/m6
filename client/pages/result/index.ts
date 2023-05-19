@@ -10,7 +10,7 @@ customElements.define(
   class extends HTMLElement {
     connectedCallback() {
       this.render();
-      const buttonNewRoom = this.querySelector(".siguiente");
+      const buttonNewRoom = this.querySelector(".volver");
       buttonNewRoom.addEventListener("click", (e) => {
         state.cleanStartUno();
         state.clearStartDos();
@@ -46,19 +46,28 @@ customElements.define(
       var style = document.createElement("style");
       this.innerHTML = `
       <div class="contenedor">
-          <div><img src=${mostrar}></div>
-          <div class="score">
-            <h2>score</h2>
-            <p>${p1}:${puntos1}</p>
-            <p>${p2}:${puntos2}</p> 
+          <div class="elemento elemento1">
+             <img class="estrella" src=${mostrar} />
           </div>
-    <button class="siguiente">JUGAR</button> 
+
+
+          <div class="score">
+          <h3 class="sscore">SCORE</h3>
+            <p class="sscore">${p1}:${puntos1}</p>
+            <p class="sscore">${p2}:${puntos2}</p> 
+          </div>
+
+
+
+          <div class="botones">
+            <button class="volver">JUGAR!</button>
+          </div>
     </div>
         `;
       if (mostrar == ganado) {
         style.textContent = `
       .contenedor{
-        background-color:#0066FF;
+        background:linear-gradient(to right, #2962ff, #BBDEFB);
       }
      
       `;
@@ -67,7 +76,7 @@ customElements.define(
       if (mostrar == perdedor) {
         style.textContent = `
       .contenedor{
-        background-color:#FF0033;
+        background:linear-gradient(to right, #D50000, #FFCDD2);
       }
       
       `;
@@ -76,7 +85,7 @@ customElements.define(
       if (mostrar == empate) {
         style.textContent = `
       .contenedor{
-        background-color:#FFFF66;
+        background:linear-gradient(to right, #d9ad26, #EFE670);
       }
       
       `;

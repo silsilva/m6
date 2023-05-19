@@ -1,5 +1,8 @@
 import { state } from "../../state";
 import { Router } from "@vaadin/router";
+const piedra = require("url:../../img/pngaaa.com-3313783.png");
+const papel = require("url:../../img/pngaaa.com-3313815.png");
+const tijera = require("url:../../img/pngaaa.com-3313779.png");
 
 customElements.define(
   "insert-code",
@@ -22,25 +25,34 @@ customElements.define(
     render() {
       this.innerHTML = `
     
+<div class="contenedor">
+      <div class="elemento elemento1A">
+      <p class="ppiedra">Piedra</p>
+      <p class="ppapel">Papel o</p>
+      <p class="ttijera">Tijera</p>
+        </div>
 
-   <div class="contenedor">
-    <div class="header">  
-    <h2 class= "titulo">Piedra, Papel ó Tijera</h2>  
-    </div>
 
-   <div class="main"> 
-   <form class="form">
-      <label>ROOM</label>
-      <input type="text" name="code">
-      <button>COMENZAR</button>
-   </form>  
-   </div> 
+      <form class="form">
+        <label>ROOM</label>
+        <input type="text" name="code" />
+        <button class="comenzar">COMENZAR</button>
+      </form>
 
-    
-      <div class="footer">
-      <footer-component></footer-component>
-      </div>
-    </div>
+    <div class="elemento elemento5">
+       <button type="button" class="piedra">
+       <img src=${piedra} />
+       </button>
+       <button type="button" class="papel">
+         <img src=${papel} />
+       </button>
+       <button type="button" class="tijera">
+         <img src=${tijera}} />
+       </button>
+     </div>
+ 
+  
+</div>
         `;
     }
   }

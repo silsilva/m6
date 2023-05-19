@@ -1,8 +1,8 @@
 import { state } from "../../state";
 import { Router } from "@vaadin/router";
-const piedra = require("url:../../img/piedra.svg");
-const papel = require("url:../../img/papel.svg");
-const tijera = require("url:../../img/tijera.svg");
+const piedra = require("url:../../img/pngaaa.com-3313783.png");
+const papel = require("url:../../img/pngaaa.com-3313815.png");
+const tijera = require("url:../../img/pngaaa.com-3313779.png");
 
 customElements.define(
   "play-page",

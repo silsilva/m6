@@ -1,8 +1,8 @@
 import { state } from "../../state";
 import { Router } from "@vaadin/router";
-const piedra = require("url:../../img/piedra.svg");
-const papel = require("url:../../img/papel.svg");
-const tijera = require("url:../../img/tijera.svg");
+const piedra = require("url:../../img/pngaaa.com-3313783.png");
+const papel = require("url:../../img/pngaaa.com-3313815.png");
+const tijera = require("url:../../img/pngaaa.com-3313779.png");
 
 customElements.define(
   "game-page",
@@ -52,47 +52,27 @@ customElements.define(
     render() {
       this.innerHTML = `
       <div class="contenedor">
-          <div class="header">
-            <div class="contador">
+         
+          
             <custom-countdown class= "time" count="3"></custom-countdown>
-            </div>
-          </div>
-          <div class="footer-comp">
-            <div class="manos">
-              <button type="button"  class="piedra">
-              <img src=${piedra}>
-              </button>
-              <button type="button"class="papel">
-              <img src=${papel}>
-              </button>
-              <button type="button"  class="tijera">
-                <img src=${tijera}>
-              </button>
-            </div>  
-          </div>     
+            
+        
+
+
+        <div class="elemento elemento5">
+          <button type="button" class="piedra">
+          <img class="img" src=${piedra} />
+          </button>
+          <button type="button" class="papel">
+            <img class="img" src=${papel} />
+          </button>
+          <button type="button" class="tijera">
+            <img class="img" src=${tijera}} />
+          </button>
+        </div>
      </div>     
   
           `;
-
-      const style = document.createElement("style");
-      style.innerHTML = `
-       button{
-        width: 380px;
-        height: 250px;
-        border:transparent;
-       }
-       img{
-        height: 10vh;
-     
-       }
-       @media (min-width: 700px) {
-        img{
-          height:15vh;
-        }
-        
-       }
-        `;
-      this.appendChild(style);
     }
   }
 );
